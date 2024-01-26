@@ -50,7 +50,7 @@ public class Item : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D otherCollider)
     {
         Debug.Log("트리거 시작!");
-        
+
 
         // 목적: 플레이어의 체력을 올리고 싶다.
         // 순서:
@@ -75,7 +75,7 @@ public class Item : MonoBehaviour
         Debug.Log("트리거 중!");
         Timer += Time.deltaTime;
 
-        Debug.Log($"타이머: {Timer}"); 
+        Debug.Log($"타이머: {Timer}");
 
         if (Timer >= Delaytime)
         {
@@ -83,13 +83,13 @@ public class Item : MonoBehaviour
 
             if (MyType == ItemType.Health)
             {
-                player.Health++;
+                player.AddPlayerHealth(player.GetplayerHealth() + 1);
                 player.PlayItem1Sound();
                 GameObject vfx = Instantiate(ItemVFXPrefab_H);
                 vfx.transform.position = this.transform.position;
 
 
-                Debug.Log($"현재 플레이어 체력: {player.Health}");
+                Debug.Log($"현재 플레이어 체력: {player.GetplayerHealth()}");
 
 
             }
@@ -107,7 +107,7 @@ public class Item : MonoBehaviour
             Timer = 0f;
 
             Destroy(this.gameObject);
-             
+
         }
 
     }
@@ -129,7 +129,8 @@ public class Item : MonoBehaviour
         _dir.Normalize();
 
         // 3. 스피드에 맞게 이동
-        this.transform.position += (Vector3)(_dir * Speed) * Time.deltaTime;}
+        this.transform.position += (Vector3)(_dir * Speed) * Time.deltaTime;
+    }
 
     private void Update()
     {

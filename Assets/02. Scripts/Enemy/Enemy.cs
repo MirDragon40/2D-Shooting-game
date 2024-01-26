@@ -72,9 +72,9 @@ public class Enemy : MonoBehaviour
             // 1. 각도를 구한다
             // tan@ = y/x   -> @ = y/x*atan
             float radian = Mathf.Atan2(_dir.y, _dir.x);
-            Debug.Log(radian);  // 호도법 -> 라디안 값
+            //Debug.Log(radian);  // 호도법 -> 라디안 값
             float degree = radian * Mathf.Rad2Deg;
-            Debug.Log(degree);
+            //Debug.Log(degree);
 
             // 2. 각도에 맞게 회전한다.
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, degree + 90)); // 이미지 리소스에 맞게 90을 더한다.
@@ -106,9 +106,9 @@ public class Enemy : MonoBehaviour
             // 1. 각도를 구한다
             // tan@ = y/x   -> @ = y/x*atan
             float radian = Mathf.Atan2(_dir.y, _dir.x);
-            Debug.Log(radian);  // 호도법 -> 라디안 값
+            //Debug.Log(radian);  // 호도법 -> 라디안 값
             float degree = radian * Mathf.Rad2Deg;
-            Debug.Log(degree);
+            //Debug.Log(degree);
 
             // 2. 각도에 맞게 회전한다.
             // transform.rotation = Quaternion.Euler(new Vector3(0, 0, degree + 90)); // 이미지 리소스에 맞게 90을 더한다.
@@ -140,7 +140,7 @@ public class Enemy : MonoBehaviour
             // 플레이어 스크립트를 가져온다.
             Player player = collision.collider.GetComponent<Player>();
             // 플레이어 체력을 -= 1
-            player.Health -= 1;
+            player.SubPlayerHealth(player.GetplayerHealth());
 
 
             GameObject heart1 = GameObject.Find("Heart1");
@@ -149,15 +149,15 @@ public class Enemy : MonoBehaviour
 
 
             // 플레이어의 생명이 줄어들 때마다 체력 오브젝트가 하나씩 파괴됨
-            if (player.Health == 2)
+            if (player.GetplayerHealth() == 2)
             {
                 Destroy(heart1);
             }
-            if (player.Health == 1)
+            if (player.GetplayerHealth() == 1)
             {
                 Destroy(heart2);
             }
-            if (player.Health == 0)
+            if (player.GetplayerHealth() == 0)
             {
                 Destroy(heart3);
             }
@@ -175,7 +175,7 @@ public class Enemy : MonoBehaviour
 
 
             // 플레이어 체력이 적다면..
-            if (player.Health <= 0)
+            if (player.GetplayerHealth() <= 0)
             {
                 // 나 죽자
 
@@ -188,6 +188,7 @@ public class Enemy : MonoBehaviour
                 // - 위치를 나의 위치로 수정
                 item.transform.position = this.transform.position;
                 */
+
             }
 
 

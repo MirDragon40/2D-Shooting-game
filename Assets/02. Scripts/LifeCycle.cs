@@ -6,44 +6,44 @@ public class LifeCycle : MonoBehaviour
 {
     private void Awake()
     {
-        // ÀÎ½ºÅÏ½ºÈ­ µÈ Á÷ÈÄ¿¡ È£ÃâµÈ´Ù.
-        // ÁÖ·Î °ÔÀÓÀÇ »óÅÂ³ª º¯¼ö¸¦ ÃÊ±âÈ­ÇÒ ¶§ »ç¿ë
-        // ¿ÀºêÁ§Æ®µéÀÌ ·»´ý¼øÀ¸·Î È£ÃâµÊ
-        Debug.Log("Awake");
+        // ì¸ìŠ¤í„´ìŠ¤í™” ëœ ì§í›„ì— í˜¸ì¶œëœë‹¤.
+        // ì£¼ë¡œ ê²Œìž„ì˜ ìƒíƒœë‚˜ ë³€ìˆ˜ë¥¼ ì´ˆê¸°í™”í•  ë•Œ ì‚¬ìš©
+        // ì˜¤ë¸Œì íŠ¸ë“¤ì´ ë Œë¤ìˆœìœ¼ë¡œ í˜¸ì¶œë¨
+        //Debug.Log("Awake");
     }
 
     private void OnEnable()
     {
-        // »ç¿ë °¡´ÉÇÒ¶§¸¶´Ù È£ÃâµÈ´Ù. (ºñÈ°¼ºÈ­ µÆ´Ù°¡ È°¼ºÈ­ µÉ ¶§)
-        // »ç¿ëÀÚ°¡ ¸¸µç ÀÌº¥Æ®¸¦ ¿¬°áÇÒ ¶§ ¸¹ÀÌ ¾²ÀÎ´Ù.
-        Debug.Log("OnEnable");
+        // ì‚¬ìš© ê°€ëŠ¥í• ë•Œë§ˆë‹¤ í˜¸ì¶œëœë‹¤. (ë¹„í™œì„±í™” ëë‹¤ê°€ í™œì„±í™” ë  ë•Œ)
+        // ì‚¬ìš©ìžê°€ ë§Œë“  ì´ë²¤íŠ¸ë¥¼ ì—°ê²°í•  ë•Œ ë§Žì´ ì“°ì¸ë‹¤.
+        //Debug.Log("OnEnable");
     }
 
     private void Start()
     {
-        // ½ÃÀÛÇÒ ¶§ È£ÃâµÈ´Ù.
-        // ´Ù¸¥ ½ºÅ©¸³Æ®ÀÇ ¸ðµç Awake ¸ðµÎ ½ÇÇàµÈ ÀÌÈÄ¿¡ È£ÃâµÈ´Ù.
-        Debug.Log("Start");
+        // ì‹œìž‘í•  ë•Œ í˜¸ì¶œëœë‹¤.
+        // ë‹¤ë¥¸ ìŠ¤í¬ë¦½íŠ¸ì˜ ëª¨ë“  Awake ëª¨ë‘ ì‹¤í–‰ëœ ì´í›„ì— í˜¸ì¶œëœë‹¤.
+        //Debug.Log("Start");
     }
 
-    // Input ¾÷µ¥ÀÌÆ®
+    // Input ì—…ë°ì´íŠ¸
 
     private void Update()
     {
-        // ¸Å ÇÁ·¹ÀÓ¸¶´Ù È£ÃâµÈ´Ù.
+        // ë§¤ í”„ë ˆìž„ë§ˆë‹¤ í˜¸ì¶œëœë‹¤.
     }
 
-    // ÄÚ·çÆ¾ ¾÷µ¥ÀÌÆ®
+    // ì½”ë£¨í‹´ ì—…ë°ì´íŠ¸
 
     private void LateUpdate()
     {
-        // ¸ðµç È°¼ºÈ­µÈ ½ºÅ©¸³Æ®ÀÇ Update ÇÔ¼ö°¡ È£ÃâµÇ°í ³ª¼­ ÇÑ ¹ø¾¿ È£ÃâµÈ´Ù.
-        // Ä«¸Þ¶ó°¡ Ä³¸¯ÅÍ¸¦ µû¶ó´Ù´Ï´Â »óÈ²¿¡¼­ ÁÖ·Î ¾²ÀÓ: Ä³¸¯ÅÍ ¸ÕÀú ¿òÁ÷ÀÌ°í, Ä«¸Þ¶ó ¿òÁ÷ÀÓ
+        // ëª¨ë“  í™œì„±í™”ëœ ìŠ¤í¬ë¦½íŠ¸ì˜ Update í•¨ìˆ˜ê°€ í˜¸ì¶œë˜ê³  ë‚˜ì„œ í•œ ë²ˆì”© í˜¸ì¶œëœë‹¤.
+        // ì¹´ë©”ë¼ê°€ ìºë¦­í„°ë¥¼ ë”°ë¼ë‹¤ë‹ˆëŠ” ìƒí™©ì—ì„œ ì£¼ë¡œ ì“°ìž„: ìºë¦­í„° ë¨¼ì € ì›€ì§ì´ê³ , ì¹´ë©”ë¼ ì›€ì§ìž„
     }
     private void OnDisable()
     {
-        // »ç¿ë ºÒ°¡´ÉÇÒ¶§¸¶´Ù È£ÃâµÈ´Ù. 
-        // ÀÌº¥Æ® ¿¬°áÀ» Á¾·áÇÒ ¶§ »ç¿ëµÈ´Ù.
-        Debug.Log("OnDisable");
+        // ì‚¬ìš© ë¶ˆê°€ëŠ¥í• ë•Œë§ˆë‹¤ í˜¸ì¶œëœë‹¤. 
+        // ì´ë²¤íŠ¸ ì—°ê²°ì„ ì¢…ë£Œí•  ë•Œ ì‚¬ìš©ëœë‹¤.
+        //Debug.Log("OnDisable");
     }
 }

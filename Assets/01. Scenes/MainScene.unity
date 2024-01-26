@@ -492,7 +492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &78495413
 Transform:
   m_ObjectHideFlags: 0
@@ -875,7 +875,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 441d4786202ddc9449d8dad7c7432ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 4
   SlowSpeed: 2
   MyAnimator: {fileID: 198100072}
 --- !u!61 &198100068
@@ -941,7 +940,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5662835f9ea8e46a6aced93a46e17a3b, type: 3}
   MyAudioSource: {fileID: 198100073}
   dieNum: 0
-  Health: 3
 --- !u!50 &198100071
 Rigidbody2D:
   serializedVersion: 4
@@ -2619,7 +2617,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreTextUI: {fileID: 1148692104}
-  Score: 0
   BestScoreUI: {fileID: 137501294}
   BestScore: 0
 --- !u!4 &691720041
