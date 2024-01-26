@@ -5,7 +5,7 @@ using static UnityEditor.Progress;
 
 public class Item : MonoBehaviour
 {
-    public float Timer = 0f;   // ½Ã°£À» Ã¼Å©ÇÒ º¯¼ö
+    public float Timer = 0f;   // ì‹œê°„ì„ ì²´í¬í•  ë³€ìˆ˜
     public float Delaytime = 1f;
     public float Speed;
 
@@ -20,7 +20,7 @@ public class Item : MonoBehaviour
         Health,
         Speed
 
-    }     // 0: Ã¼·ÂÀ» ¿Ã·ÁÁÖ´Â Å¸ÀÔ, 1: ½ºÇÇµå¸¦ ¿Ã·ÁÁÖ´Â Å¸ÀÔ
+    }     // 0: ì²´ë ¥ì„ ì˜¬ë ¤ì£¼ëŠ” íƒ€ì…, 1: ìŠ¤í”¼ë“œë¥¼ ì˜¬ë ¤ì£¼ëŠ” íƒ€ì…
 
     public ItemType MyType;
 
@@ -35,7 +35,7 @@ public class Item : MonoBehaviour
     {
         MyAnimator = GetComponent<Animator>();
 
-        // ¿­°ÅÇü°ú ¼ıÀÚ´Â ¼­·Î Çüº¯È¯ÀÌ µÈ´Ù. 
+        // ì—´ê±°í˜•ê³¼ ìˆ«ìëŠ” ì„œë¡œ í˜•ë³€í™˜ì´ ëœë‹¤. 
         MyAnimator.SetInteger("ItemType", (int)MyType);
 
     }
@@ -46,21 +46,21 @@ public class Item : MonoBehaviour
         Debug.Log("Collision Enter");
     }
 
-    // (´Ù¸¥ Äİ¶óÀÌ´õ¿¡ ÀÇÇØ) Æ®¸®°Å°¡ ¹ßµ¿µÉ ¶§
+    // (ë‹¤ë¥¸ ì½œë¼ì´ë”ì— ì˜í•´) íŠ¸ë¦¬ê±°ê°€ ë°œë™ë  ë•Œ
     private void OnTriggerEnter2D(Collider2D otherCollider)
     {
-        Debug.Log("Æ®¸®°Å ½ÃÀÛ!");
+        Debug.Log("íŠ¸ë¦¬ê±° ì‹œì‘!");
         
 
-        // ¸ñÀû: ÇÃ·¹ÀÌ¾îÀÇ Ã¼·ÂÀ» ¿Ã¸®°í ½Í´Ù.
-        // ¼ø¼­:
-        // 1. ÇÃ·¹ÀÌ¾î ½ºÅ©¸³Æ® ¹Ş¾Æ¿À±â
+        // ëª©ì : í”Œë ˆì´ì–´ì˜ ì²´ë ¥ì„ ì˜¬ë¦¬ê³  ì‹¶ë‹¤.
+        // ìˆœì„œ:
+        // 1. í”Œë ˆì´ì–´ ìŠ¤í¬ë¦½íŠ¸ ë°›ì•„ì˜¤ê¸°
         // GameObject playerGameObject = GameObject.Find("Player");
         // Player player = playerGameObject.GetComponent<Player>();
 
-        // Ãæµ¹ÇÑ »ó´ë¹æ Äİ¶óÀÌ´õ¿¡¼­ Player ÄÄÆ÷³ÍÆ® °¡Á®¿À±â: 
+        // ì¶©ëŒí•œ ìƒëŒ€ë°© ì½œë¼ì´ë”ì—ì„œ Player ì»´í¬ë„ŒíŠ¸ ê°€ì ¸ì˜¤ê¸°: 
 
-        // 2. ÇÃ·¹ÀÌ¾î Ã¼·Â ¿Ã¸®±â
+        // 2. í”Œë ˆì´ì–´ ì²´ë ¥ ì˜¬ë¦¬ê¸°
 
         /*
         if (otherCollider.tag == "Player")
@@ -68,14 +68,14 @@ public class Item : MonoBehaviour
         }
         */
     }
-    // (´Ù¸¥ Äİ¶óÀÌ´õ¿¡ ÀÇÇØ) Æ®¸®°Å°¡ ¹ßµ¿ ÁßÀÏ ¶§
+    // (ë‹¤ë¥¸ ì½œë¼ì´ë”ì— ì˜í•´) íŠ¸ë¦¬ê±°ê°€ ë°œë™ ì¤‘ì¼ ë•Œ
 
     private void OnTriggerStay2D(Collider2D otherCollider)
     {
-        Debug.Log("Æ®¸®°Å Áß!");
+        Debug.Log("íŠ¸ë¦¬ê±° ì¤‘!");
         Timer += Time.deltaTime;
 
-        Debug.Log($"Å¸ÀÌ¸Ó: {Timer}"); 
+        Debug.Log($"íƒ€ì´ë¨¸: {Timer}"); 
 
         if (Timer >= Delaytime)
         {
@@ -89,7 +89,7 @@ public class Item : MonoBehaviour
                 vfx.transform.position = this.transform.position;
 
 
-                Debug.Log($"ÇöÀç ÇÃ·¹ÀÌ¾î Ã¼·Â: {player.Health}");
+                Debug.Log($"í˜„ì¬ í”Œë ˆì´ì–´ ì²´ë ¥: {player.Health}");
 
 
             }
@@ -97,40 +97,38 @@ public class Item : MonoBehaviour
             else if (MyType == ItemType.Speed)
             {
                 PlayerMove playerMove = otherCollider.GetComponent<PlayerMove>();
-                playerMove.Speed += 1;
+                playerMove.SetSpeed(playerMove.GetSpeed() + 1);
+                playerMove.AddSpeed(1);
                 player.PlayItem2Sound();
                 GameObject vfx = Instantiate(ItemVFXPrefab_S);
                 vfx.transform.position = this.transform.position;
-
-
-
             }
 
             Timer = 0f;
 
             Destroy(this.gameObject);
-
+             
         }
 
     }
-    // (´Ù¸¥ Äİ¶óÀÌ´õ¿¡ ÀÇÇØ) Æ®¸®°Å°¡ ³¡³µÀ» ¶§
+    // (ë‹¤ë¥¸ ì½œë¼ì´ë”ì— ì˜í•´) íŠ¸ë¦¬ê±°ê°€ ëë‚¬ì„ ë•Œ
     private void OnTriggerExit2D(Collider2D otherCollider)
     {
-        Debug.Log("Æ®¸®°Å Á¾·á!");
+        Debug.Log("íŠ¸ë¦¬ê±° ì¢…ë£Œ!");
         Timer = 0f;
 
 
     }
     void ItemFollow()
     {
-        // 1. ÇÃ·¹ÀÌ¾î °ÔÀÓ¿ÀºêÁ§Æ®¸¦ Ã£°í
+        // 1. í”Œë ˆì´ì–´ ê²Œì„ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ê³ 
         GameObject target = GameObject.Find("Player");
 
-        // 2. ¹æÇâÀ» Á¤ÇÏ°í
+        // 2. ë°©í–¥ì„ ì •í•˜ê³ 
         Vector3 _dir = target.transform.position - this.transform.position;
         _dir.Normalize();
 
-        // 3. ½ºÇÇµå¿¡ ¸Â°Ô ÀÌµ¿
+        // 3. ìŠ¤í”¼ë“œì— ë§ê²Œ ì´ë™
         this.transform.position += (Vector3)(_dir * Speed) * Time.deltaTime;}
 
     private void Update()

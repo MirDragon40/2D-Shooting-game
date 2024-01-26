@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public AudioClip[] Clips;  // 0: ÅÍÄ¡ »ç¿îµå, 1: Ã¼·Â ¾ÆÀÌÅÛ, 2: ÀÌµ¿¼Óµµ ¾ÆÀÌÅÛ
+    public AudioClip[] Clips;  // 0: í„°ì¹˜ ì‚¬ìš´ë“œ, 1: ì²´ë ¥ ì•„ì´í…œ, 2: ì´ë™ì†ë„ ì•„ì´í…œ
     public AudioSource MyAudioSource;
+
+    private int _playerHealth;
 
     public float dieNum = 0;
     private void OnCollisionEnter2D(Collision2D collision)
@@ -20,8 +22,8 @@ public class Player : MonoBehaviour
     public int Health = 3;
     private void Start()
     {
-        /*// GetComponent<ÄÄÆ÷³ÍÆ® Å¸ÀÔ > (): -> °ÔÀÓ ¿ÀºêÁ§Æ®ÀÇ ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿À´Â ¸Ş¼­µå
-        // ¸ø¹Ş¾Æ¿À¸é Null°ª ¹İÈ¯
+        /*// GetComponent<ì»´í¬ë„ŒíŠ¸ íƒ€ì… > (): -> ê²Œì„ ì˜¤ë¸Œì íŠ¸ì˜ ì»´í¬ë„ŒíŠ¸ë¥¼ ê°€ì ¸ì˜¤ëŠ” ë©”ì„œë“œ
+        // ëª»ë°›ì•„ì˜¤ë©´ Nullê°’ ë°˜í™˜
         SpriteRenderer sr = GetComponent<SpriteRenderer> ();
         sr.color = Color.white;
 
@@ -37,7 +39,8 @@ public class Player : MonoBehaviour
         
 
     }
-    private void Update()
+
+        private void Update()
     {
         if (Input.GetKeyDown(KeyCode.V))
         {

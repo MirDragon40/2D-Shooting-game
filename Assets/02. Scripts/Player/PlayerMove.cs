@@ -5,16 +5,16 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     /**
-        ¸ñÇ¥: ÇÃ·¹ÀÌ¾î¸¦ ÀÌµ¿ÇÏ°í ½Í´Ù.
-        ÇÊ¿ä ¼Ó¼º: 
-         - ÀÌµ¿ ¼Óµµ
-        ¼ø¼­:
-        1. Å°º¸µå ÀÔ·ÂÀ» ¹Ş´Â´Ù.
-        2. Å°º¸µå ÀÔ·Â¿¡ µû¶ó ÀÌµ¿ÇÒ ¹æÇâÀ» °è»êÇÑ´Ù.
-        3. ÀÌµ¿ÇÒ ¹æÇâ°ú ÀÌµ¿ ¼Óµµ¿¡ µû¶ó ÇÃ·¹ÀÌ¾î¸¦ ÀÌµ¿½ÃÅ²´Ù.
+        ëª©í‘œ: í”Œë ˆì´ì–´ë¥¼ ì´ë™í•˜ê³  ì‹¶ë‹¤.
+        í•„ìš” ì†ì„±: 
+         - ì´ë™ ì†ë„
+        ìˆœì„œ:
+        1. í‚¤ë³´ë“œ ì…ë ¥ì„ ë°›ëŠ”ë‹¤.
+        2. í‚¤ë³´ë“œ ì…ë ¥ì— ë”°ë¼ ì´ë™í•  ë°©í–¥ì„ ê³„ì‚°í•œë‹¤.
+        3. ì´ë™í•  ë°©í–¥ê³¼ ì´ë™ ì†ë„ì— ë”°ë¼ í”Œë ˆì´ì–´ë¥¼ ì´ë™ì‹œí‚¨ë‹¤.
      **/
 
-    public float Speed = 3f;    // ÀÌµ¿ ¼Óµµ: ÃÊ´ç 3¸¸Å­ ÀÌµ¿ÇÏ°Ú´Ù.
+    private float Speed = 3f;    // ì´ë™ ì†ë„: ì´ˆë‹¹ 3unitë§Œí¼ ì´ë™í•˜ê² ë‹¤.
     public float SlowSpeed = 2f;
 
     public const float MinX = -3f;
@@ -41,42 +41,42 @@ public class PlayerMove : MonoBehaviour
     {
         // transform.Translate(Vector2.up * Speed * Time.deltaTime);
         // (0, 1) * 3 -> (0, 3) * Time.deltaTime
-        // deltaTimeÀ» °öÇÏ°Ô µÇ¸é, ÃÖÁ¾ÀûÀ¸·Î´Â ÃÊ´ç ÀÌµ¿°Å¸®°¡ °°¾ÆÁö°Ô µÈ´Ù.
-        // deltaTimeÀº ÇÁ·¹ÀÓ °£ ½Ã°£ °£°İÀ» ¹İÈ¯ÇÑ´Ù.
-        // 30fps: d -> 0.03ÃÊ
-        // 60fps: d -> 0.016ÃÊ
+        // deltaTimeì„ ê³±í•˜ê²Œ ë˜ë©´, ìµœì¢…ì ìœ¼ë¡œëŠ” ì´ˆë‹¹ ì´ë™ê±°ë¦¬ê°€ ê°™ì•„ì§€ê²Œ ëœë‹¤.
+        // deltaTimeì€ í”„ë ˆì„ ê°„ ì‹œê°„ ê°„ê²©ì„ ë°˜í™˜í•œë‹¤.
+        // 30fps: d -> 0.03ì´ˆ
+        // 60fps: d -> 0.016ì´ˆ
 
-        //  1.Å°º¸µå ÀÔ·ÂÀ» ¹Ş´Â´Ù.
-        //float h = Input.GetAxis("Horizontal");    // ¼öÆò ÀÔ·Â°ª: -1.0f ~ 0f ~ +1.0f  ÁÂ¿ìÅ°ÀÇ ÀÔ·Â¿¡ µû¶ó °ªÀÌ ¹Ù²ï´Ù.
-        //float v = Input.GetAxis("Vertical");      // ¼öÁ÷ ÀÔ·Â°ª: -1.0f ~ 0f ~ +1.0f (Input Manager Âü°í)  »óÇÏÅ°ÀÇ ÀÔ·Â¿¡ µû¶ó °ªÀÌ ¹Ù²ï´Ù. 
-        float h = Input.GetAxisRaw("Horizontal");   // ¼öÆò ÀÔ·Â°ª: -1.0f, 0f, +1.0f  ÁÂ¿ìÅ°ÀÇ ÀÔ·Â¿¡ µû¶ó °ªÀÌ ¹Ù²ï´Ù.
-        float v = Input.GetAxisRaw("Vertical");     // ¼öÁ÷ ÀÔ·Â°ª: -1.0f, 0f, +1.0f (Input Manager Âü°í) »óÇÏÅ°ÀÇ ÀÔ·Â¿¡ µû¶ó °ªÀÌ ¹Ù²ï´Ù.
+        //  1.í‚¤ë³´ë“œ ì…ë ¥ì„ ë°›ëŠ”ë‹¤.
+        //float h = Input.GetAxis("Horizontal");    // ìˆ˜í‰ ì…ë ¥ê°’: -1.0f ~ 0f ~ +1.0f  ì¢Œìš°í‚¤ì˜ ì…ë ¥ì— ë”°ë¼ ê°’ì´ ë°”ë€ë‹¤.
+        //float v = Input.GetAxis("Vertical");      // ìˆ˜ì§ ì…ë ¥ê°’: -1.0f ~ 0f ~ +1.0f (Input Manager ì°¸ê³ )  ìƒí•˜í‚¤ì˜ ì…ë ¥ì— ë”°ë¼ ê°’ì´ ë°”ë€ë‹¤. 
+        float h = Input.GetAxisRaw("Horizontal");   // ìˆ˜í‰ ì…ë ¥ê°’: -1.0f, 0f, +1.0f  ì¢Œìš°í‚¤ì˜ ì…ë ¥ì— ë”°ë¼ ê°’ì´ ë°”ë€ë‹¤.
+        float v = Input.GetAxisRaw("Vertical");     // ìˆ˜ì§ ì…ë ¥ê°’: -1.0f, 0f, +1.0f (Input Manager ì°¸ê³ ) ìƒí•˜í‚¤ì˜ ì…ë ¥ì— ë”°ë¼ ê°’ì´ ë°”ë€ë‹¤.
                                                     //Debug.Log($"h:{h}, v:{v}");
         bool isShiftPressed = Input.GetKey(KeyCode.LeftShift);
         bool isEPressed = Input.GetKeyDown(KeyCode.E);
         bool isQPressed = Input.GetKeyDown(KeyCode.Q);
 
-        // ¾Ö´Ï¸ŞÀÌÅÍ¿¡°Ô ÆÄ¶ó¹ÌÅÍ °ªÀ» ³Ñ°ÜÁØ´Ù.
+        // ì• ë‹ˆë©”ì´í„°ì—ê²Œ íŒŒë¼ë¯¸í„° ê°’ì„ ë„˜ê²¨ì¤€ë‹¤.
         MyAnimator.SetInteger("h", (int)h);
 
-        // 2.Å°º¸µå ÀÔ·Â¿¡ µû¶ó ÀÌµ¿ÇÒ ¹æÇâÀ» °è»êÇÑ´Ù.
+        // 2.í‚¤ë³´ë“œ ì…ë ¥ì— ë”°ë¼ ì´ë™í•  ë°©í–¥ì„ ê³„ì‚°í•œë‹¤.
         // Vector2 dir = Vector2.right * h + Vector2.up * v;
         // (1, 0) * h + (0, 1) * v = (h, v)
 
-        // ¹æÇâÀ» °¢ ¼ººĞÀ¸·Î Á¦ÀÛ
+        // ë°©í–¥ì„ ê° ì„±ë¶„ìœ¼ë¡œ ì œì‘
         Vector2 dir = new Vector2(h, v);
-        //Debug.Log($"Á¤±ÔÈ­ Àü: {dir.magnitude}");
-        // ÀÌµ¿ ¹æÇâÀ» Á¤±ÔÈ­ (¹æÇâÀº °°Áö¸¸ ±æÀÌ¸¦ 1·Î ¸¸µé¾îÁÜ)
+        //Debug.Log($"ì •ê·œí™” ì „: {dir.magnitude}");
+        // ì´ë™ ë°©í–¥ì„ ì •ê·œí™” (ë°©í–¥ì€ ê°™ì§€ë§Œ ê¸¸ì´ë¥¼ 1ë¡œ ë§Œë“¤ì–´ì¤Œ)
         dir = dir.normalized;
-        //Debug.Log($"Á¤±ÔÈ­ ÈÄ: {dir.magnitude}");
+        //Debug.Log($"ì •ê·œí™” í›„: {dir.magnitude}");
 
-        // 3.ÀÌµ¿ÇÒ ¹æÇâ°ú ÀÌµ¿ ¼Óµµ¿¡ µû¶ó ÇÃ·¹ÀÌ¾î¸¦ ÀÌµ¿½ÃÅ²´Ù.
+        // 3.ì´ë™í•  ë°©í–¥ê³¼ ì´ë™ ì†ë„ì— ë”°ë¼ í”Œë ˆì´ì–´ë¥¼ ì´ë™ì‹œí‚¨ë‹¤.
         // Debug.Log(Time.deltaTime);
         // transform.Translate(dir * Speed * Time.deltaTime);
-        // °ø½ÄÀ» ÀÌ¿ëÇÑ ÀÌµ¿
-        // »õ·Î¿î À§Ä¡ = ÇöÀç À§Ä¡ + ¼Óµµ * ½Ã°£
+        // ê³µì‹ì„ ì´ìš©í•œ ì´ë™
+        // ìƒˆë¡œìš´ ìœ„ì¹˜ = í˜„ì¬ ìœ„ì¹˜ + ì†ë„ * ì‹œê°„
         Vector2 newPosition = transform.position + (Vector3)(dir * Speed) * Time.deltaTime;
-        // Vector3°ªÀÌ ³ª¿À´Âµ¥ dirÀ» Vector2·Î Á¤ÀÇÇØ³õ¾Ò±â ¶§¹®¿¡ ¿À·ù°¡ ³ª¹Ç·Î, Çüº¯È¯À» ÇØÁØ´Ù.
+        // Vector3ê°’ì´ ë‚˜ì˜¤ëŠ”ë° dirì„ Vector2ë¡œ ì •ì˜í•´ë†“ì•˜ê¸° ë•Œë¬¸ì— ì˜¤ë¥˜ê°€ ë‚˜ë¯€ë¡œ, í˜•ë³€í™˜ì„ í•´ì¤€ë‹¤.
 
         if (isShiftPressed)
         {
@@ -101,7 +101,7 @@ public class PlayerMove : MonoBehaviour
         }
         **/
 
-        // ¹üÀ§¸¦ ³Ñ¾î¼¹À» ¶§, ¹İ´ëÂÊÀ¸·Î ³Ñ¾î°¡µµ·Ï
+        // ë²”ìœ„ë¥¼ ë„˜ì–´ì„°ì„ ë•Œ, ë°˜ëŒ€ìª½ìœ¼ë¡œ ë„˜ì–´ê°€ë„ë¡
         if (transform.position.x > MaxX)
         {
             newPosition.x = MinX;
@@ -111,14 +111,14 @@ public class PlayerMove : MonoBehaviour
             newPosition.x = MaxX;
         }
 
-        // ¹æ¹ı 1.
+        // ë°©ë²• 1.
         // newPosition.y = Mathf.Max(MinY, newPosition.y);
         // newPosition.y = Mathf.Min(newPosition.y, MaxY);
 
-        // ¹æ¹ı 2.
+        // ë°©ë²• 2.
         newPosition.y = Mathf.Clamp(newPosition.y, MinY, MaxY);
 
-        // ¹æ¹ı 3.
+        // ë°©ë²• 3.
         /**
         if (transform.position.y > MaxY)
         {
@@ -136,22 +136,22 @@ public class PlayerMove : MonoBehaviour
         transform.position = newPosition;
 
 
-        // ÇöÀç À§Ä¡ Ãâ·Â
+        // í˜„ì¬ ìœ„ì¹˜ ì¶œë ¥
        // Debug.Log(transform.position);
-        // transform.position = new Vector3(0, 1);  -> ÀÌ·¸°Ô ÇÏ¸é ¸Å ÇÁ·¹ÀÓ¸¶´Ù ÇÃ·¹ÀÌ¾î°¡ Æ¯Á¤ À§Ä¡·Î °íÁ¤µÇ¹Ç·Î ÀÌµ¿ÇÒ ¼ö°¡ ¾ø°Ô µÊ.
+        // transform.position = new Vector3(0, 1);  -> ì´ë ‡ê²Œ í•˜ë©´ ë§¤ í”„ë ˆì„ë§ˆë‹¤ í”Œë ˆì´ì–´ê°€ íŠ¹ì • ìœ„ì¹˜ë¡œ ê³ ì •ë˜ë¯€ë¡œ ì´ë™í•  ìˆ˜ê°€ ì—†ê²Œ ë¨.
     }
 
     private void SpeedUpDown()
     {
-        // ¸ñÇ¥: Q/E ¹öÆ°À» ´©¸£¸é ¼Ó·ÂÀ» ¹Ù²Ù°í ½Í´Ù.
-        // ¼Ó¼º
-        // - ¼Ó·Â (Speed)
-        // ¼ø¼­:
+        // ëª©í‘œ: Q/E ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ ì†ë ¥ì„ ë°”ê¾¸ê³  ì‹¶ë‹¤.
+        // ì†ì„±
+        // - ì†ë ¥ (Speed)
+        // ìˆœì„œ:
 
-        // 1. Q/E ¹öÆ° ÀÔ·ÂÀ» ÆÇ´ÜÇÑ´Ù.
+        // 1. Q/E ë²„íŠ¼ ì…ë ¥ì„ íŒë‹¨í•œë‹¤.
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            // 2. Q ¹öÆ°ÀÌ ´­·È´Ù¸é ½ºÇÇµå 1´Ù¿î
+            // 2. Q ë²„íŠ¼ì´ ëˆŒë ¸ë‹¤ë©´ ìŠ¤í”¼ë“œ 1ë‹¤ìš´
             Speed++;
         }
         else if (Input.GetKeyDown(KeyCode.E))
@@ -165,4 +165,18 @@ public class PlayerMove : MonoBehaviour
 
     }
 
+    public float GetSpeed()
+    {
+        return Speed;
+    }
+
+    public void SetSpeed(float speed)
+    {
+        Speed = speed;
+    }
+
+    public void AddSpeed(float speed)
+    {
+        Speed += speed;
+    }
 }

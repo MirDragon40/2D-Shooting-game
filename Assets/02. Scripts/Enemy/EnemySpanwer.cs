@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class EnemySpanwer : MonoBehaviour
 {
-    // ¿ªÇÒ: ÀÏÁ¤½Ã°£¸¶´Ù ÀûÀ» ÇÁ¸®ÆÕÀ¸·ÎºÎÅÍ »ı¼ºÇØ¼­ ³» À§Ä¡¿¡ °®´Ù³õ°í ½Í´Ù.
-    // ÇÊ¿ä¼Ó¼º
-    // - Àû ÇÁ¸®ÆÕ
-    // - ÀÏÁ¤½Ã°£
-    // - ÇöÀç½Ã°£ (È¤Àº Å¸ÀÌ¸Ó)
+    // ì—­í• : ì¼ì •ì‹œê°„ë§ˆë‹¤ ì ì„ í”„ë¦¬íŒ¹ìœ¼ë¡œë¶€í„° ìƒì„±í•´ì„œ ë‚´ ìœ„ì¹˜ì— ê°–ë‹¤ë†“ê³  ì‹¶ë‹¤.
+    // í•„ìš”ì†ì„±
+    // - ì  í”„ë¦¬íŒ¹
+    // - ì¼ì •ì‹œê°„
+    // - í˜„ì¬ì‹œê°„ (í˜¹ì€ íƒ€ì´ë¨¸)
 
-    [Header("Àû ÇÁ¸®ÆÕ")]
+    [Header("ì  í”„ë¦¬íŒ¹")]
     public GameObject EnemyPrefab;        // - Basic
     public GameObject EnemyTargetPrefab;  // - Target
     public GameObject FollowerPrefab;     // - Follow
@@ -30,37 +30,37 @@ public class EnemySpanwer : MonoBehaviour
 
     }
 
-    // ¸ñÇ¥: Àû »ı¼º ½Ã°£À» ·£´ıÇÏ°Ô ÇÏ°í ½Í´Ù.
-    // ÇÊ¿ä ¼Ó¼º:
-    // - ÃÖ¼Ò ½Ã°£
-    // - ÃÖ´ë ½Ã°£
+    // ëª©í‘œ: ì  ìƒì„± ì‹œê°„ì„ ëœë¤í•˜ê²Œ í•˜ê³  ì‹¶ë‹¤.
+    // í•„ìš” ì†ì„±:
+    // - ìµœì†Œ ì‹œê°„
+    // - ìµœëŒ€ ì‹œê°„
     public float MinTime = 0.5f;
     public float MaxTime = 1.5f;
 
     private void Start()
     {
 
-        // ½ÃÀÛÇÒ ¶§ Àû »ı¼º ½Ã°£À» ·£´ıÇÏ°Ô ¼³Á¤ÇÑ´Ù.
+        // ì‹œì‘í•  ë•Œ ì  ìƒì„± ì‹œê°„ì„ ëœë¤í•˜ê²Œ ì„¤ì •í•œë‹¤.
         SetRandomTime();
 
     }
 
-    // ±¸Çö ¼ø¼­:
-    // 1. ½Ã°£ÀÌ Èå¸£´Ù°¡ 
-    // 2. ¸¸¾à¿¡ ½Ã°£ÀÌ ÀÏÁ¤½Ã°£ÀÌ µÇ¸é
+    // êµ¬í˜„ ìˆœì„œ:
+    // 1. ì‹œê°„ì´ íë¥´ë‹¤ê°€ 
+    // 2. ë§Œì•½ì— ì‹œê°„ì´ ì¼ì •ì‹œê°„ì´ ë˜ë©´
 
     void Update()
     {
-        // ±¸Çö ¼ø¼­:
-        // 1. ½Ã°£ÀÌ Èå¸£´Ù°¡
+        // êµ¬í˜„ ìˆœì„œ:
+        // 1. ì‹œê°„ì´ íë¥´ë‹¤ê°€
         CurrentTimer += Time.deltaTime;
 
-        // 2. ¸¸¾à¿¡ ÀÏÁ¤ ½Ã°£ÀÌ µÇ¸é
+        // 2. ë§Œì•½ì— ì¼ì • ì‹œê°„ì´ ë˜ë©´
         if (CurrentTimer >= SpawnTime)
         {
 
 
-            // Å¸ÀÌ¸Ó ÃÊ±âÈ­
+            // íƒ€ì´ë¨¸ ì´ˆê¸°í™”
             CurrentTimer = 0f;
 
             SetRandomTime();
@@ -71,10 +71,10 @@ public class EnemySpanwer : MonoBehaviour
 
             if (RandomRate > 4f)
             {
-                // 3. ÇÁ¸®ÆÕÀ¸·ÎºÎÅÍ ÀÏ¹İ ÀûÀ» »ı¼ºÇÑ´Ù.
+                // 3. í”„ë¦¬íŒ¹ìœ¼ë¡œë¶€í„° ì¼ë°˜ ì ì„ ìƒì„±í•œë‹¤.
                 GameObject EnemyBasic = Instantiate(EnemyPrefab);
 
-                // 4. »ı¼ºÇÑ ÀûÀÇ À§Ä¡¸¦ ³» À§Ä¡·Î ¹Ù²Û´Ù.
+                // 4. ìƒì„±í•œ ì ì˜ ìœ„ì¹˜ë¥¼ ë‚´ ìœ„ì¹˜ë¡œ ë°”ê¾¼ë‹¤.
                 EnemyBasic.transform.position = transform.position;
             }
             else if (RandomRate <= 4f && RandomRate > 3f)
@@ -85,10 +85,10 @@ public class EnemySpanwer : MonoBehaviour
             }
             else 
             {
-                // 3. ÇÁ¸®ÆÕÀ¸·ÎºÎÅÍ Å¸°Ù ÀûÀ» »ı¼ºÇÑ´Ù.
+                // 3. í”„ë¦¬íŒ¹ìœ¼ë¡œë¶€í„° íƒ€ê²Ÿ ì ì„ ìƒì„±í•œë‹¤.
                 GameObject EnemyTarget = Instantiate(EnemyTargetPrefab);
                 
-                // 4. »ı¼ºÇÑ ÀûÀÇ À§Ä¡¸¦ ³» À§Ä¡·Î ¹Ù²Û´Ù.
+                // 4. ìƒì„±í•œ ì ì˜ ìœ„ì¹˜ë¥¼ ë‚´ ìœ„ì¹˜ë¡œ ë°”ê¾¼ë‹¤.
                 EnemyTarget.transform.position = transform.position;
             }
 
@@ -98,5 +98,5 @@ public class EnemySpanwer : MonoBehaviour
 
 
 
-// ¾Æ¹«³»¿ë ÀÛ¼ºÇßÀ½ 
-// ¹«¤Á¤À¤· ¿À¤À ¿À·ù³ª´Âµ¥...
+// ì•„ë¬´ë‚´ìš© ì‘ì„±í–ˆìŒ 
+// ë¬´ã…‘ã…ã…‡ ì˜¤ã… ì˜¤ë¥˜ë‚˜ëŠ”ë°...
