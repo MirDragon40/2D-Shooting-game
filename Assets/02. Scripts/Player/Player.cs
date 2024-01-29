@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
         }
 
     }
-    private int Health = 3;
+    private int _health = 3;
     private void Start()
     {
         /*// GetComponent<컴포넌트 타입 > (): -> 게임 오브젝트의 컴포넌트를 가져오는 메서드
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
 
         private void Update()
     {
-        Debug.Log(Health);
+        Debug.Log(_health);
     }
 
     public void PlayTouchSound()
@@ -69,19 +69,33 @@ public class Player : MonoBehaviour
 
     public int GetplayerHealth()
     {
-        return Health;
+        return _health;
     }
     public void SetplayerHealth(int health)
     {
-        Health = health;
+        _health = health;
     }
 
-    public void AddPlayerHealth(int health)
+    public void AddPlayerHealth(int amount)
     {
-        Health += health;
+        if (amount <= 0)
+        {
+            return;
+        }
+
+        _health += amount;
     }
+
+
+
     public void SubPlayerHealth(int health)
     {
-        Health -= health;
+        if (health <= 0)
+        {
+            return;
+        }
+        _health -= health;
+
     }
 }
+

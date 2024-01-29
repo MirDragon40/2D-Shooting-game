@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum BulletType   // ÃÑ¾Ë Å¸ÀÔ¿¡ ´ëÇÑ ¿­°ÅÇü(»ó¼ö¸¦ ±â¾ïÇÏ±â ÁÁ°Ô ÇÏ³ªÀÇ ÀÌ¸§À¸·Î ±×·ìÈ­ÇÏ´Â °Í)
+public enum BulletType   // ì´ì•Œ íƒ€ì…ì— ëŒ€í•œ ì—´ê±°í˜•(ìƒìˆ˜ë¥¼ ê¸°ì–µí•˜ê¸° ì¢‹ê²Œ í•˜ë‚˜ì˜ ì´ë¦„ìœ¼ë¡œ ê·¸ë£¹í™”í•˜ëŠ” ê²ƒ)
 {
     Main = 1,
     Sub = 2,
@@ -12,19 +12,19 @@ public enum BulletType   // ÃÑ¾Ë Å¸ÀÔ¿¡ ´ëÇÑ ¿­°ÅÇü(»ó¼ö¸¦ ±â¾ïÇÏ±â ÁÁ°Ô ÇÏ³ªÀÇ 
 public class Bullet : MonoBehaviour
 {
     //public int BType = 0;
-    //public int BulletType = 0; // 0ÀÌ¸é ÁÖÃÑ¾Ë, 1ÀÌ¸é º¸Á¶ÃÑ¾Ë, 2¸é ÆêÀÌ½î´Â ÃÑ¾Ë
+    //public int BulletType = 0; // 0ì´ë©´ ì£¼ì´ì•Œ, 1ì´ë©´ ë³´ì¡°ì´ì•Œ, 2ë©´ í«ì´ì˜ëŠ” ì´ì•Œ
     public BulletType BType;
     //public BulletType BType2 = BulletType.Sub;
 
 
 
-    // [ÃÑ¾Ë ÀÌµ¿ ±¸Çö]
-    // ¸ñÇ¥: ÃÑ¾ËÀ» À§·Î °è¼Ó ÀÌµ¿½ÃÅ°°í ½Í´Ù.
-    // ¼Ó¼º: 
-    // -  ¼Ó·Â
-    // ±¸Çö ¼ø¼­
-    // 1. ÀÌµ¿ÇÒ ¹æÇâÀ» ±¸ÇÑ´Ù.
-    // 2. ÀÌµ¿ÇÑ´Ù.
+    // [ì´ì•Œ ì´ë™ êµ¬í˜„]
+    // ëª©í‘œ: ì´ì•Œì„ ìœ„ë¡œ ê³„ì† ì´ë™ì‹œí‚¤ê³  ì‹¶ë‹¤.
+    // ì†ì„±: 
+    // -  ì†ë ¥
+    // êµ¬í˜„ ìˆœì„œ
+    // 1. ì´ë™í•  ë°©í–¥ì„ êµ¬í•œë‹¤.
+    // 2. ì´ë™í•œë‹¤.
 
 
     public float Speed;
@@ -37,12 +37,12 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        // 1. ÀÌµ¿ÇÒ ¹æÇâÀ» ±¸ÇÑ´Ù.
+        // 1. ì´ë™í•  ë°©í–¥ì„ êµ¬í•œë‹¤.
 ;        Vector2 dir = Vector2.up;   // new Vector2(0,1);
 
-        // 2. ÀÌµ¿ÇÑ´Ù.
+        // 2. ì´ë™í•œë‹¤.
         //gameObject.transform.Translate(dir * Speed * Time.deltaTime); 
-        // »õ·Î¿î À§Ä¡ =  ÇöÀçÀ§Ä¡ * ¼Óµµ * ½Ã°£
+        // ìƒˆë¡œìš´ ìœ„ì¹˜ =  í˜„ì¬ìœ„ì¹˜ * ì†ë„ * ì‹œê°„
         transform.position += (Vector3)(dir * Speed) * Time.deltaTime;
     }
 

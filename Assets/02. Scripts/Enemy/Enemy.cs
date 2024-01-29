@@ -87,17 +87,12 @@ public class Enemy : MonoBehaviour
         {
             _dir = Vector2.down;
         }
-
-
-
     }
 
     void Update()
     {
         if (EType == EnemyType.Follower)
         {
-
-
             //GameObject target = GameObject.Find("Player");
 
             _dir = _target.transform.position - this.transform.position;
@@ -140,7 +135,7 @@ public class Enemy : MonoBehaviour
             // 플레이어 스크립트를 가져온다.
             Player player = collision.collider.GetComponent<Player>();
             // 플레이어 체력을 -= 1
-            player.SubPlayerHealth(player.GetplayerHealth());
+            player.SubPlayerHealth(1);
 
 
             GameObject heart1 = GameObject.Find("Heart1");
@@ -292,13 +287,16 @@ public class Enemy : MonoBehaviour
 
         // 목표: 스코어를 증가시키고싶다.
         // 1. 씬에서 ScoreManager 게임 오브젝트를 찾아온다. 
-        GameObject smGameObject = GameObject.Find("ScoreManager");
+        // GameObject smGameObject = GameObject.Find("ScoreManager");
         // 2. ScoreManager 게임 오브젝트에서 ScoreManager스크립트 컴포넌트를 얻어온다.
-        ScoreManager scoreManager = smGameObject.GetComponent<ScoreManager>();
+        // ScoreManager scoreManager = smGameObject.GetComponent<ScoreManager>();
         // 3. 컴포넌트의 Score 속성을 증가시킨다. 
-        int score = scoreManager.GetScore();
-        scoreManager.SetScore(score +1);
-        Debug.Log(scoreManager.GetScore());
+        // int score = scoreManager.GetScore();
+        // scoreManager.SetScore(score +1);
+        // Debug.Log(scoreManager.GetScore());
+
+        // 싱글톤 객체 참조로 변경
+        ScoreManager.Instance.AddScore();
     }
 
     public void MakeItem()

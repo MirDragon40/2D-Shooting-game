@@ -83,7 +83,7 @@ public class Item : MonoBehaviour
 
             if (MyType == ItemType.Health)
             {
-                player.AddPlayerHealth(player.GetplayerHealth() + 1);
+                player.AddPlayerHealth(1);
                 player.PlayItem1Sound();
                 GameObject vfx = Instantiate(ItemVFXPrefab_H);
                 vfx.transform.position = this.transform.position;
