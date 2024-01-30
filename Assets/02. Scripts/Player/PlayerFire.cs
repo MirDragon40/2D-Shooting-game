@@ -27,35 +27,35 @@ public class PlayerFire : MonoBehaviour
     // - 풀 사이즈
     public int PoolSize = 20;
     // - 오브젝트(총알) 풀
-    public List<GameObject> _bulletPool = null;   // 디폴트 값이 null이다.
-    public List<GameObject> _subBulletPool = null;
+    public List<Bullet> _bulletPool = null;   // 디폴트 값이 null이다.
 
     // 순서:
     // 1. 태어날 때: Awake
     private void Awake()
     {
         // 2. 오브젝트 풀 할당해주고..
-        _bulletPool = new List<GameObject>();
+        _bulletPool = new List<Bullet>();
 
         // 3. 총알 프리팹으로부터 총알을 풀 사이즈만큼 생성해준다.
+        // 3-1. 메인 총알
         for (int i = 0; i < PoolSize; i++)
         {
             GameObject bullet = Instantiate(BulletPrefab);
 
             // 4. 생성한 총알을 풀에다가 넣는다.
-            _bulletPool.Add(bullet);
+            _bulletPool.Add(bullet.GetComponent<Bullet>());
 
             // 5. 생성된 총알이 바로 보이므로 삭제해준다.
-            bullet.SetActive(false);
+            bullet.SetActive(false);  // 끈다.
         }
-
+        // 3-2. 서브 총알
         for (int i = 0; i < PoolSize; i++)
         {
-            GameObject subBullet = Instantiate(SubBullet);
+            GameObject bullet = Instantiate(SubBullet);
 
-            _subBulletPool.Add(subBullet);
+            _bulletPool.Add(bullet.GetComponent<Bullet>());
 
-            subBullet.SetActive(false);
+            bullet.SetActive(false);
         }
     }
 
@@ -202,11 +202,11 @@ public class PlayerFire : MonoBehaviour
                 // 목표: 총구 개수 만큼 총알을 풀에서 꺼내 쓴다.
                 // 순서:
                 // 1. 꺼져있는 (비활성화 되어있는) 총알을 찾아 꺼낸다.
-                GameObject bullet = null;
-                foreach (GameObject b in _bulletPool)
+                Bullet bullet = null;
+                foreach (Bullet b in _bulletPool)  
                 {
-                    // 만약에 꺼져(비활성화되어) 있다면...
-                    if (b.activeInHierarchy == false)
+                    // 만약에 꺼져(비활성화되어) 있고 && 메인 총알이라면
+                    if (b.gameObject.activeInHierarchy == false && b.BType == BulletType.Main)
                     {
                         bullet = b;
                         break; // 찾았기 때문에 그 뒤로는 찾을 필요가 없다.
@@ -216,7 +216,7 @@ public class PlayerFire : MonoBehaviour
                 bullet.transform.position = Muzzles[i].transform.position;
 
                 // 3. 총알을 킨다. (발사한다)
-                bullet.SetActive(true);
+                bullet.gameObject.SetActive(true);
 
             }
 
@@ -232,20 +232,20 @@ public class PlayerFire : MonoBehaviour
             for (int i = 0; i < SubMuzzles.Count; i++)
             {
                 // 1.  총알을 만들고
-                GameObject subBullet = null;
-                foreach (GameObject sb in _subBulletPool)
+                Bullet bullet = null;
+                foreach (Bullet b in _bulletPool)
                 {
-                    if (sb.activeInHierarchy == false)
+                    if (b.gameObject.activeInHierarchy == false && b.BType == BulletType.Sub)
                     {
-                        subBullet = sb;
-                        break;
+                        bullet = b;
+                        break; 
                     }
                 }
                 
 
                 // 2. 위치를 설정한다. 
-                subBullet.transform.position = SubMuzzles[i].transform.position;
-                subBullet.SetActive(true);
+                bullet.transform.position = SubMuzzles[i].transform.position;
+                bullet.gameObject.SetActive(true);
             }
 
             

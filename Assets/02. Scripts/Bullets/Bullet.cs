@@ -43,7 +43,7 @@ public class Bullet : MonoBehaviour
         // 2. 이동한다.
         //gameObject.transform.Translate(dir * Speed * Time.deltaTime); 
         // 새로운 위치 =  현재위치 * 속도 * 시간
-        transform.position += (Vector3)(dir * Speed) * Time.deltaTime;
+        gameObject.transform.position += (Vector3)(dir * Speed) * Time.deltaTime;
     }
 
 }
