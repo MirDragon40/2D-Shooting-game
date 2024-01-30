@@ -16,6 +16,10 @@ public class EnemySpanwer : MonoBehaviour
     public GameObject EnemyTargetPrefab;  // - Target
     public GameObject FollowerPrefab;     // - Follow
 
+    // 풀사이즈: 15 (15 * 3 = 45)
+    public int PoolSize = 15;
+    // 풀 (창고)
+    public List<Enemy> EnemyPool;
 
 
 
@@ -36,6 +40,31 @@ public class EnemySpanwer : MonoBehaviour
     // - 최대 시간
     public float MinTime = 0.5f;
     public float MaxTime = 1.5f;
+
+    private void Awake()
+    {
+        EnemyPool = new List<Enemy>();
+        // (생성 -> 끄고 -> 넣는다) * PoolSize(15).
+        for (int i = 0; i < PoolSize; i++)
+        {
+            GameObject enemyObject = Instantiate(EnemyPrefab); // 베이직 생성
+            enemyObject.SetActive(false);
+            EnemyPool.Add(enemyObject.GetComponent<Enemy>());
+        }
+        for (int i = 0; i < PoolSize; i++)
+        {
+            GameObject enemyObject = Instantiate(EnemyTargetPrefab); // 베이직 생성
+            enemyObject.SetActive(false);
+            EnemyPool.Add(enemyObject.GetComponent<Enemy>());
+        }
+        for (int i = 0; i < PoolSize; i++)
+        {
+            GameObject enemyObject = Instantiate(FollowerPrefab); // 베이직 생성
+            enemyObject.SetActive(false);
+            EnemyPool.Add(enemyObject.GetComponent<Enemy>());
+        }
+
+    }
 
     private void Start()
     {
@@ -68,7 +97,7 @@ public class EnemySpanwer : MonoBehaviour
             RandomRate = Random.Range(0f, 10f);
 
             // GameObject enemy = null;
-
+            Enemy enemy = null;
             if (RandomRate > 4f)
             {
                 // 3. 프리팹으로부터 일반 적을 생성한다.
@@ -76,11 +105,29 @@ public class EnemySpanwer : MonoBehaviour
 
                 // 4. 생성한 적의 위치를 내 위치로 바꾼다.
                 EnemyBasic.transform.position = transform.position;
+
+                foreach (Enemy e in EnemyPool)
+                {
+                    if (e.gameObject.activeInHierarchy && e.EType == EnemyType.Basic)
+                    {
+                        enemy = e;
+                        break;
+                    }
+                }
+
             }
             else if (RandomRate <= 4f && RandomRate > 3f)
             {
                 GameObject EnemyFollower = Instantiate(FollowerPrefab);
                 EnemyFollower.transform.position = transform.position;
+                foreach (Enemy e in EnemyPool)
+                {
+                    if(e.gameObject.activeInHierarchy && e.EType == EnemyType.Follower)
+                    {
+                        enemy = e;
+                        break;
+                    }
+                }
 
             }
             else 
@@ -90,6 +137,16 @@ public class EnemySpanwer : MonoBehaviour
                 
                 // 4. 생성한 적의 위치를 내 위치로 바꾼다.
                 EnemyTarget.transform.position = transform.position;
+
+                foreach (Enemy e in EnemyPool)
+                {
+                    if (e.gameObject.activeInHierarchy && e.EType == EnemyType.Target)
+                    {
+                        enemy = e;
+                        break;
+                    }
+                }
+
             }
 
         }

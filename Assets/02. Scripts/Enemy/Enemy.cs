@@ -285,7 +285,8 @@ public class Enemy : MonoBehaviour
     public void Death()
     {
         // 나 죽자
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
+        //Destroy(this.gameObject);
         GameObject vfx = Instantiate(ExplosionVFXPrefab);
         vfx.transform.position = this.transform.position;
 
