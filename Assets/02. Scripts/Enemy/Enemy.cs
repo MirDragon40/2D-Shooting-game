@@ -190,10 +190,14 @@ public class Enemy : MonoBehaviour
         }
 
 
-        else if (collision.collider.tag == "Bullet")
+        else if (collision.collider.CompareTag("Bullet"))
         {
             Bullet bullet = collision.collider.GetComponent<Bullet>();
-            Destroy(collision.collider.gameObject);
+
+
+            // 총알 삭제
+            // Destroy(collision.collider.gameObject);
+            collision.collider.gameObject.SetActive(false);
 
             if (EType == EnemyType.Follower)
             {
