@@ -66,7 +66,7 @@ public class PlayerFire : MonoBehaviour
     [Header("총구들")]
     //public GameObject[] Muzzles = new GameObject[2];  // 총구
     public List<GameObject> Muzzles;
-    
+
 
     [Header("보조 총구들")]
     //public GameObject[] SubMuzzles = new GameObject[2];
@@ -79,7 +79,7 @@ public class PlayerFire : MonoBehaviour
     [Header("자동 모드")]
     public bool AutoMode = false;
 
-    
+
     // 풀이(타이머)
     public float Timer = 10f;
     public const float COOL_TIME = 0.3f;
@@ -107,11 +107,13 @@ public class PlayerFire : MonoBehaviour
         {
             Debug.Log("자동 공격 모드");
             AutoMode = true;
+
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Debug.Log("수동 공격 모드");
+            Debug.Log("자동 공격 모드");
             AutoMode = false;
+
         }
 
 
@@ -141,13 +143,7 @@ public class PlayerFire : MonoBehaviour
 
                 if (Time.time - lastShootTime >= shootInterval)
                 {
-                    GameObject bullet1 = GameObject.Instantiate(BulletPrefab);
-                    GameObject bullet2 = GameObject.Instantiate(BulletPrefab);
-
-                    bullet1.transform.position = Muzzles[0].transform.position;
-                    bullet2.transform.position = Muzzles[1].transform.position;
-                    lastShootTime = Time.time;
-
+                    Fire();
                 }
 
             }
@@ -173,89 +169,24 @@ public class PlayerFire : MonoBehaviour
         bool ready = AutoMode || Input.GetKeyDown(KeyCode.Space);
         if (Timer <= 0 && ready)
         {
-            // 타이머 초기화
-            Timer = COOL_TIME;
+            Shooting();
 
-            // 2. 프리팹으로부터 총알을 만든다.
-            //GameObject bullet1 = Instantiate(BulletPrefab);
-            //GameObject bullet2 = Instantiate(BulletPrefab);
+        }
 
-            // 3. 만든 총알의 위치를 총구의 위치로 바꾼다.
-            //bullet1.transform.position = Muzzles[0].transform.position;
-            //bullet2.transform.position = Muzzles[1].transform.position;
-
-
-            // 오디오 클립
-            FireSource.Play();
-
-
-            // 꺼낸 총알의위치를 각 총구의 위치로 바꾼다.
-            for (int i = 0; i < Muzzles.Count; i++)
-            {
-                // 1.  총알을 만들고
-                //GameObject bullet = Instantiate(BulletPrefab);
-
-
-                // 2. 위치를 설정한다. 
-                //bullet.transform.position = Muzzles[i].transform.position;
-
-                // 목표: 총구 개수 만큼 총알을 풀에서 꺼내 쓴다.
-                // 순서:
-                // 1. 꺼져있는 (비활성화 되어있는) 총알을 찾아 꺼낸다.
-                Bullet bullet = null;
-                foreach (Bullet b in _bulletPool)  
-                {
-                    // 만약에 꺼져(비활성화되어) 있고 && 메인 총알이라면
-                    if (b.gameObject.activeInHierarchy == false && b.BType == BulletType.Main)
-                    {
-                        bullet = b;
-                        break; // 찾았기 때문에 그 뒤로는 찾을 필요가 없다.
-                    }
-                }
-                // 2. 꺼낸 총알의 위치를 각 총구의 위치로 바꾼다.
-                bullet.transform.position = Muzzles[i].transform.position;
-
-                // 3. 총알을 킨다. (발사한다)
-                bullet.gameObject.SetActive(true);
-
-            }
-
-
-            /* GameObject subBullet1 = Instantiate(SubBullet);
-             GameObject subBullet2 = Instantiate(SubBullet);
-
-             // 3. 만든 총알의 위치를 총구의 위치로 바꾼다.
-             subBullet1.transform.position = SubMuzzles[0].transform.position;
-             subBullet2.transform.position = SubMuzzles[1].transform.position;*/
-
-            // 목표: 총구 개수 만큼 총알을 만들고, 만든 총알의위치를 각 총구의 위치로 바꾼다.
-            for (int i = 0; i < SubMuzzles.Count; i++)
-            {
-                // 1.  총알을 만들고
-                Bullet bullet = null;
-                foreach (Bullet b in _bulletPool)
-                {
-                    if (b.gameObject.activeInHierarchy == false && b.BType == BulletType.Sub)
-                    {
-                        bullet = b;
-                        break; 
-                    }
-                }
-                
-
-                // 2. 위치를 설정한다. 
-                bullet.transform.position = SubMuzzles[i].transform.position;
-                bullet.gameObject.SetActive(true);
-            }
-
-            
+        // 3번 버튼을 누르면
+        BoomTimer += Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Boom();
         }
 
 
-        BoomTimer += Time.deltaTime;
-        // 3번 버튼을 누르면
+    }
 
-        if (BoomTimer >= BOOM_COOL_TIME && Input.GetKeyDown(KeyCode.Alpha3))
+    private void Boom()
+    {
+        // 봄타이머가 0보다 같거나 작고 
+        if (BoomTimer >= BOOM_COOL_TIME)
         {
             //GameObject boomObject = Instantiate(BoomPrefab);
             //boomObject.transform.position = Vector2.zero;
@@ -279,5 +210,132 @@ public class PlayerFire : MonoBehaviour
 
         }
 
+    }
+
+    private void Fire()
+    {
+        GameObject bullet1 = GameObject.Instantiate(BulletPrefab);
+        GameObject bullet2 = GameObject.Instantiate(BulletPrefab);
+
+        bullet1.transform.position = Muzzles[0].transform.position;
+        bullet2.transform.position = Muzzles[1].transform.position;
+        lastShootTime = Time.time;
+    }
+    private void Shooting()
+    {
+
+        // 타이머 초기화
+        Timer = COOL_TIME;
+
+        // 2. 프리팹으로부터 총알을 만든다.
+        //GameObject bullet1 = Instantiate(BulletPrefab);
+        //GameObject bullet2 = Instantiate(BulletPrefab);
+
+        // 3. 만든 총알의 위치를 총구의 위치로 바꾼다.
+        //bullet1.transform.position = Muzzles[0].transform.position;
+        //bullet2.transform.position = Muzzles[1].transform.position;
+
+
+        // 오디오 클립
+        FireSource.Play();
+
+
+        // 꺼낸 총알의위치를 각 총구의 위치로 바꾼다.
+        for (int i = 0; i < Muzzles.Count; i++)
+        {
+            // 1.  총알을 만들고
+            //GameObject bullet = Instantiate(BulletPrefab);
+
+
+            // 2. 위치를 설정한다. 
+            //bullet.transform.position = Muzzles[i].transform.position;
+
+            // 목표: 총구 개수 만큼 총알을 풀에서 꺼내 쓴다.
+            // 순서:
+            // 1. 꺼져있는 (비활성화 되어있는) 총알을 찾아 꺼낸다.
+            Bullet bullet = null;
+            foreach (Bullet b in _bulletPool)
+            {
+                // 만약에 꺼져(비활성화되어) 있고 && 메인 총알이라면
+                if (b.gameObject.activeInHierarchy == false && b.BType == BulletType.Main)
+                {
+                    bullet = b;
+                    break; // 찾았기 때문에 그 뒤로는 찾을 필요가 없다.
+                }
+            }
+            // 2. 꺼낸 총알의 위치를 각 총구의 위치로 바꾼다.
+            bullet.transform.position = Muzzles[i].transform.position;
+
+            // 3. 총알을 킨다. (발사한다)
+            bullet.gameObject.SetActive(true);
+
+        }
+
+
+        /* GameObject subBullet1 = Instantiate(SubBullet);
+         GameObject subBullet2 = Instantiate(SubBullet);
+
+         // 3. 만든 총알의 위치를 총구의 위치로 바꾼다.
+         subBullet1.transform.position = SubMuzzles[0].transform.position;
+         subBullet2.transform.position = SubMuzzles[1].transform.position;*/
+
+        // 목표: 총구 개수 만큼 총알을 만들고, 만든 총알의위치를 각 총구의 위치로 바꾼다.
+        for (int i = 0; i < SubMuzzles.Count; i++)
+        {
+            // 1.  총알을 만들고
+            Bullet bullet = null;
+            foreach (Bullet b in _bulletPool)
+            {
+                if (b.gameObject.activeInHierarchy == false && b.BType == BulletType.Sub)
+                {
+                    bullet = b;
+                    break;
+                }
+            }
+
+
+            // 2. 위치를 설정한다. 
+            bullet.transform.position = SubMuzzles[i].transform.position;
+            bullet.gameObject.SetActive(true);
+        }
+    }
+
+    // 총알 발사
+    public void OnClickXButton()
+    {
+        bool ready = !AutoMode;
+        if (Timer <= 0 && ready)
+        {
+            Debug.Log("X버튼이 클릭되었습니다.");
+
+            Shooting();
+        }
+
+
+
+    }
+
+    // 자동공격 on/off
+    public void OnClickYButton()
+    {
+        Debug.Log("Y버튼이 클릭되었습니다.");
+        if (AutoMode == false)
+        {
+            Debug.Log("자동 공격 모드");
+            AutoMode = true;
+        }
+        else if (AutoMode == true)
+        {
+            Debug.Log("수동 공격 모드");
+            AutoMode = false;
+
+        }
+    }
+
+    // 궁극기 사용
+    public void OnClickBButton()
+    {
+        Debug.Log("B버튼이 클릭되었습니다.");
+        Boom();
     }
 }
