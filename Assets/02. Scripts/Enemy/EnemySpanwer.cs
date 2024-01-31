@@ -116,6 +116,7 @@ public class EnemySpanwer : MonoBehaviour
                 }
 
             }
+
             else if (RandomRate <= 4f && RandomRate > 3f)
             {
                 GameObject EnemyFollower = Instantiate(FollowerPrefab);
@@ -137,10 +138,12 @@ public class EnemySpanwer : MonoBehaviour
                 
                 // 4. 생성한 적의 위치를 내 위치로 바꾼다.
                 EnemyTarget.transform.position = transform.position;
+                EnemyTarget.gameObject.SetActive(true);
+
 
                 foreach (Enemy e in EnemyPool)
                 {
-                    if (e.gameObject.activeInHierarchy && e.EType == EnemyType.Target)
+                    if (!e.gameObject.activeInHierarchy && e.EType == EnemyType.Target)
                     {
                         enemy = e;
                         break;

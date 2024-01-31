@@ -17,14 +17,17 @@ public class DestroyZone : MonoBehaviour
         {
             otherCollider.gameObject.SetActive(false);
         }
-
-        else
+        else if (otherCollider.CompareTag("Enemy"))
         {
             // 2. 충돌한 물체를 파괴해버린다.
-            Destroy(otherCollider.gameObject);
+            //Destroy(otherCollider.gameObject);
+            otherCollider.gameObject.SetActive(false);
 
         }
-
+        else
+        {
+            Destroy(otherCollider.gameObject);
+        }
 
     }
 }

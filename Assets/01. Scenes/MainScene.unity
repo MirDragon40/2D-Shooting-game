@@ -492,7 +492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &78495413
 Transform:
   m_ObjectHideFlags: 0
@@ -850,6 +850,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 4771259229460771259, guid: 1ba4d3c90887cd1499984f6634dda6a5, type: 3}
   SubBullet: {fileID: 6917925386774267713, guid: 7e4b5cd6a00e49b40959732cc7c01db6, type: 3}
+  PoolSize: 20
+  _bulletPool: []
   Muzzles:
   - {fileID: 1283265903}
   - {fileID: 155530761}
@@ -1706,6 +1708,8 @@ MonoBehaviour:
   EnemyPrefab: {fileID: 1645056380852411968, guid: 06e10b0d905f1424baa21dcdf3ae04a6, type: 3}
   EnemyTargetPrefab: {fileID: 8944046280404559187, guid: b78a5ef3ebb4d604a95e976bccd82045, type: 3}
   FollowerPrefab: {fileID: 2988194895636077719, guid: 5b008449119a79543929889ede6e3dd0, type: 3}
+  PoolSize: 15
+  EnemyPool: []
   SpawnTime: 1.2
   CurrentTimer: 0
   MinTime: 0.5
@@ -2450,6 +2454,8 @@ MonoBehaviour:
   EnemyPrefab: {fileID: 1645056380852411968, guid: 06e10b0d905f1424baa21dcdf3ae04a6, type: 3}
   EnemyTargetPrefab: {fileID: 8944046280404559187, guid: b78a5ef3ebb4d604a95e976bccd82045, type: 3}
   FollowerPrefab: {fileID: 2988194895636077719, guid: 5b008449119a79543929889ede6e3dd0, type: 3}
+  PoolSize: 15
+  EnemyPool: []
   SpawnTime: 1.2
   CurrentTimer: 0
   MinTime: 0.5
@@ -4325,6 +4331,8 @@ MonoBehaviour:
   EnemyPrefab: {fileID: 1645056380852411968, guid: 06e10b0d905f1424baa21dcdf3ae04a6, type: 3}
   EnemyTargetPrefab: {fileID: 8944046280404559187, guid: b78a5ef3ebb4d604a95e976bccd82045, type: 3}
   FollowerPrefab: {fileID: 2988194895636077719, guid: 5b008449119a79543929889ede6e3dd0, type: 3}
+  PoolSize: 15
+  EnemyPool: []
   SpawnTime: 1.2
   CurrentTimer: 0
   MinTime: 0.5
@@ -5178,6 +5186,8 @@ MonoBehaviour:
   EnemyPrefab: {fileID: 1645056380852411968, guid: 06e10b0d905f1424baa21dcdf3ae04a6, type: 3}
   EnemyTargetPrefab: {fileID: 8944046280404559187, guid: b78a5ef3ebb4d604a95e976bccd82045, type: 3}
   FollowerPrefab: {fileID: 2988194895636077719, guid: 5b008449119a79543929889ede6e3dd0, type: 3}
+  PoolSize: 15
+  EnemyPool: []
   SpawnTime: 1.2
   CurrentTimer: 0
   MinTime: 0.5
@@ -5496,6 +5506,8 @@ MonoBehaviour:
   EnemyPrefab: {fileID: 1645056380852411968, guid: 06e10b0d905f1424baa21dcdf3ae04a6, type: 3}
   EnemyTargetPrefab: {fileID: 8944046280404559187, guid: b78a5ef3ebb4d604a95e976bccd82045, type: 3}
   FollowerPrefab: {fileID: 2988194895636077719, guid: 5b008449119a79543929889ede6e3dd0, type: 3}
+  PoolSize: 15
+  EnemyPool: []
   SpawnTime: 1.2
   CurrentTimer: 0
   MinTime: 0.5
