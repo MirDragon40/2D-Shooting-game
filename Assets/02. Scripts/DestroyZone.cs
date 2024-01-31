@@ -17,7 +17,7 @@ public class DestroyZone : MonoBehaviour
         {
             otherCollider.gameObject.SetActive(false);
         }
-        else if (otherCollider.CompareTag("Enemy"))
+        else if (otherCollider.CompareTag("Enermy"))
         {
             // 2. 충돌한 물체를 파괴해버린다.
             //Destroy(otherCollider.gameObject);
