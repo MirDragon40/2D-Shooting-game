@@ -106,7 +106,7 @@ public class PlayerFire : MonoBehaviour
 
 
 #if UNITY_ANDROID
-        Debug.Log("안드로이드 입니다.")
+        Debug.Log("안드로이드 입니다.");
 #endif
 
 
