@@ -44,6 +44,12 @@ public class Bullet : MonoBehaviour
         //gameObject.transform.Translate(dir * Speed * Time.deltaTime); 
         // 새로운 위치 =  현재위치 * 속도 * 시간
         gameObject.transform.position += (Vector3)(dir * Speed) * Time.deltaTime;
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
     }
 
 }

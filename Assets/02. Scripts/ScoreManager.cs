@@ -83,7 +83,7 @@ public class ScoreManager : MonoBehaviour
         // 싱글톤 패턴: 오직 한 개의 클래스 인스턴스를 갖고록 보장하고,
         //              전역적인 접근점을 제공한다. (아무데서나 쉽게 이 하나의 객체에 접근 가능)
         // 사용 이유:
-        // 게임 개발에서 매니저/관리자 클래스에 싱그톤 패턴을 적용하는 것은 일반적인 관행
+        // 게임 개발에서 매니저/관리자 클래스에 싱글톤 패턴을 적용하는 것은 일반적인 관행
         // - 전역 접근, 코드 단순화 (해당 관리자를 찾기 위한 복잡한 로직이 필요 없다.)
         // - 중복 생성 방지 (메모리 및 리소스 관리 능력 UP)
         if (Instance == null)
@@ -160,8 +160,6 @@ public class ScoreManager : MonoBehaviour
             // 저장할 수 있는 데이터타입: int, float, string
             // 타입별로 저장/로드가 가능한 Set/Get 메서드가 있다.
             PlayerPrefs.SetInt("BestScore", BestScore);
-
-
             // 3. UI에 표시한다.
             BestScoreUI.text = $"최고 점수: {_score}";
         }

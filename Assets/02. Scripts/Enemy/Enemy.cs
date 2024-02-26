@@ -318,7 +318,6 @@ public class Enemy : MonoBehaviour
             // - 위치를 나의 위치로 수정
             item_health.transform.position = this.transform.position;
         }
-
         else
         {
             Destroy(this.gameObject);

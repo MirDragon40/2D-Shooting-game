@@ -71,10 +71,10 @@ public class Item : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D otherCollider)
     {
-        Debug.Log("트리거 중!");
+        //Debug.Log("트리거 중!");
         Timer += Time.deltaTime;
 
-        Debug.Log($"타이머: {Timer}");
+        //Debug.Log($"타이머: {Timer}");
 
         if (Timer >= Delaytime)
         {

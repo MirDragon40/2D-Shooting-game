@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public float dieNum = 0;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Enermy")
+        if (collision.collider.CompareTag("Enermy"))
         {
             PlayTouchSound();
         }
@@ -85,8 +85,6 @@ public class Player : MonoBehaviour
 
         _health += amount;
     }
-
-
 
     public void SubPlayerHealth(int health)
     {

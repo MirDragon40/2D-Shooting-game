@@ -235,6 +235,7 @@ public class PlayerFire : MonoBehaviour
         bullet2.transform.position = Muzzles[1].transform.position;
         lastShootTime = Time.time;
     }
+
     private void Shooting()
     {
 
